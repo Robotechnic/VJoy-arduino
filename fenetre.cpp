@@ -30,6 +30,10 @@ fenetre::fenetre(QWidget *parent) :
 
     VJoyInterface = quint32(QInputDialog::getInt(this,"Choix du périférique VJoy","Périférique:",1,1,10));
     initVjoy(); // initialisation du périférique VJoy
+
+    //initialisation des QAction
+    connect(ui->actionMode_1,SIGNAL(triggered()),this,SLOT(setMode()));
+    connect(ui->actionMode_2,SIGNAL(triggered()),this,SLOT(setMode()));
 }
 
 fenetre::~fenetre()
@@ -217,5 +221,22 @@ void fenetre::setVjoy(float xs, float ys)
     SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
     SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_SL0);
     SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_SL1);
+}
+void fenetre::setMode(){
+    QAction* envoyeur = qobject_cast<QAction*>(sender());
 
+    if(envoyeur->text() == "Mode 1")
+    {
+        mode = '1';
+    }
+    else if(envoyeur->text() == "Mode 2")
+    {
+        mode = '2';
+    }
+}
+
+void fenetre::on_actionD_conecter_triggered()
+{
+    port->close();
+    this->connectGui(false);
 }

@@ -4,11 +4,11 @@ Application Qt c++ qui transforme une télécommande en joystick virtuel grâce 
 🚩 cette application n'est encore disponible que pour Windows
 
 ## Chema
-[chema de montage](https://github.com/Robotechnic/VJoy-arduino/blob/master/image/arduinoShema.png)
+![chema de montage](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/arduinoShema.png)
 
 ## Mise en place
 1 - dans le fichier Arduino présiser le nombre de voies et le nombre de données pour le filtre. Plus le nombre de données est grand plus la précision est grande mais plus les données sont envoiyées lentement et plus le nombre est petit moins la présision est grande mais plus la fréquence denvoi est rapide.
-[démo des éxplications](https://github.com/Robotechnic/VJoy-arduino/blob/master/image/demo1.png)
+![démo des éxplications](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/demo1.png)
 2 - Televerser le programme
 
 ## compilation depuis les sources

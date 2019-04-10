@@ -28,18 +28,21 @@ SOURCES += \
         main.cpp \
         fenetre.cpp \
         joypad/qjoypad.cpp \
-        moniteurserie.cpp
+        moniteurserie.cpp \
+    monitor.cpp
 
 HEADERS += \
         fenetre.h \
         joypad/qjoypad.h \
         moniteurserie.h \
     vJoyInclude/public.h \
-    vJoyInclude/vjoyinterface.h
+    vJoyInclude/vjoyinterface.h \
+    monitor.h
 
 FORMS += \
         fenetre.ui \
-        moniteurserie.ui
+        moniteurserie.ui \
+    monitor.ui
 
 RESOURCES += \
     resources.qrc

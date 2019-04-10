@@ -106,11 +106,6 @@
     <property name="title">
      <string>Fichier</string>
     </property>
-    <addaction name="actionOption"/>
-    <addaction name="actionSauvegarder_la_configuration"/>
-    <addaction name="actionOuvrir_une_configuration"/>
-    <addaction name="actionMettre_la_configuration_par_default"/>
-    <addaction name="separator"/>
     <addaction name="actionQuiter"/>
    </widget>
    <widget class="QMenu" name="menuaffichage">
@@ -126,7 +121,6 @@
     </widget>
     <addaction name="menuMode"/>
     <addaction name="separator"/>
-    <addaction name="actionOuvrir_monitor_Vjoy"/>
    </widget>
    <widget class="QMenu" name="menuCarte">
     <property name="enabled">
@@ -135,7 +129,6 @@
     <property name="title">
      <string>Carte</string>
     </property>
-    <addaction name="actionActualiser"/>
     <addaction name="actionInformations"/>
     <addaction name="separator"/>
     <addaction name="actionOuvrir_le_moniteur_s_rie"/>
@@ -173,10 +166,16 @@
    <property name="text">
     <string>Mode 1</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
   </action>
   <action name="actionMode_2">
    <property name="text">
     <string>Mode 2</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
    </property>
   </action>
   <action name="actionOuvrir_monitor_Vjoy">

@@ -32,8 +32,11 @@ private slots:
     void textRessus();
     void erreur(QSerialPort::SerialPortError err);
     void setVjoy(float xs, float ys);
+    void setMode();
 
     void on_actionQuiter_triggered();
+
+    void on_actionD_conecter_triggered();
 
 private:
     void actualiserSlider();
