@@ -7,6 +7,7 @@
 #include <QSerialPort>
 #include <QDebug>
 #include <QMessageBox>
+#include <QInputDialog>
 #include "moniteurserie.h"
 
 
@@ -30,6 +31,7 @@ private slots:
     void on_actionOuvrir_le_moniteur_s_rie_triggered();
     void textRessus();
     void erreur(QSerialPort::SerialPortError err);
+    void setVjoy(float xs, float ys);
 
     void on_actionQuiter_triggered();
 
@@ -45,6 +47,8 @@ private:
     MoniteurSerie *moniteur;
     int x,y,Rx,Ry,sl01,sl02;
     char mode;
+    quint32 VJoyInterface;
+    QString txt, txtTotal;
 };
 
 #endif // FENETRE_H

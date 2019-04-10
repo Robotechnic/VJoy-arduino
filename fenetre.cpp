@@ -1,13 +1,13 @@
 #include "fenetre.h"
 #include "ui_fenetre.h"
 
-#pragma comment(lib, "vJoyInterface.lib")
 
 #include <Windows.h>
 #include "vJoyInclude/public.h"
 #include "vJoyInclude/vjoyinterface.h"
 
-const quint32 VJoyInterface = 1;
+const qint32 min = 0x1;
+const qint32 max = 0x8000;
 
 fenetre::fenetre(QWidget *parent) :
     QMainWindow(parent),
@@ -17,19 +17,19 @@ fenetre::fenetre(QWidget *parent) :
     //initialisation de l'afichage des commandes
     pad1 = new QJoypad(this);
     pad2 = new QJoypad(this);
-
     ui->rcJoypad->addWidget(pad1);
     ui->rcJoypad->addWidget(pad2);
+    connect(pad1,SIGNAL(newJoypadValues(float,float)),this,SLOT(setVjoy(float,float)));
+    connect(pad2,SIGNAL(newJoypadValues(float,float)),this,SLOT(setVjoy(float,float)));
 
     getPorts();//récupération des ports série actuelements disponibles
-    connect(ui->actionActualiser,SIGNAL(triggered()),this,SIGNAL(on_actualiser_clicked()));
+    connect(ui->actionActualiser,SIGNAL(triggered()),this,SLOT(on_actualiser_clicked()));
     moniteur = new MoniteurSerie; // initialisation du moniteur série
 
     mode = '1'; // le mode de vol
 
+    VJoyInterface = quint32(QInputDialog::getInt(this,"Choix du périférique VJoy","Périférique:",1,1,10));
     initVjoy(); // initialisation du périférique VJoy
-
-
 }
 
 fenetre::~fenetre()
@@ -89,25 +89,29 @@ void fenetre::on_actionOuvrir_le_moniteur_s_rie_triggered()
 
 void fenetre::textRessus() // reception de texte via le Serial Port
 {
-    QString txt = port->readAll();
-    qDebug()<<txt;
+    txt = port->readAll();
+    txtTotal += txt;
+    if (txtTotal.right(2) == "\r\n")
+    {
+        moniteur->log(txtTotal);
 
-    moniteur->log(txt);
+        QStringList voies = txtTotal.split(":");
 
-    QStringList voies = txt.split(":");
+        int s = voies.size();
 
-    int s = voies.size();
+        moniteur->setVoies(s);
 
-    moniteur->setVoies(s);
+        y = map(voies[0].toInt(),695,1494,-100,100); //on mape les valeurs pour les aficher
+        x = map(voies[1].toInt(),695,1494,-100,100);
+        Ry = map(voies[2].toInt(),695,1494,-100,100);
+        Rx = map(voies[3].toInt(),695,1494,-100,100);
+        if (s>=5) // si les voies sont disponibles on les mape
+            sl01 = map(voies[4].toInt(),695,1494,-100,100);
+        if (s>=6)
+            sl02 = map(voies[5].toInt(),695,1494,-100,100);
 
-    y = map(voies[0].toInt(),695,1494,-100,100); //on mape les valeurs pour les aficher
-    x = map(voies[1].toInt(),695,1494,-100,100);
-    Ry = map(voies[2].toInt(),695,1494,-100,100);
-    Rx = map(voies[3].toInt(),695,1494,-100,100);
-    if (s>=5) // si les voies sont disponibles on les mape
-        sl01 = map(voies[4].toInt(),695,1494,-100,100);
-    if (s>=6)
-        sl02 = map(voies[5].toInt(),695,1494,-100,100);
+        txtTotal = QString();
+    }
 
     actualiserSlider(); // on actualise l'afichage
 }
@@ -148,7 +152,7 @@ void fenetre::connectGui(bool connect) // actualiser le gui
         ui->disconnect->setMaximumWidth(0);
 
         pad1->setMouse(true);
-        pad1->setMouse(true);
+        pad2->setMouse(true);
         moniteur->hide();
         ui->menuCarte->setEnabled(false);
     }
@@ -203,4 +207,15 @@ int fenetre::map(int x, int in_min, int in_max, int out_min, int out_max) // fon
 void fenetre::on_actionQuiter_triggered()
 {
     this->close();
+}
+
+void fenetre::setVjoy(float xs, float ys)
+{
+    SetAxis(map(x,-100,100,min,max),VJoyInterface,HID_USAGE_X);
+    SetAxis(map(y,-100,100,min,max),VJoyInterface,HID_USAGE_Y);
+    SetAxis(map(Rx,-100,100,min,max),VJoyInterface,HID_USAGE_RX);
+    SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
+    SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_SL0);
+    SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_SL1);
+
 }
