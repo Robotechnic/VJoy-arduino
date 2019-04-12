@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>joypad/images/joystick_thumb.png</file>
         <file>joypad/images/joystick_background.png</file>
+        <file>vjoy-icon.png</file>
+        <file>vjoy-icon.ico</file>
     </qresource>
 </RCC>

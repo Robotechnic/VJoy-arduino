@@ -30,3 +30,5 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+*.iss

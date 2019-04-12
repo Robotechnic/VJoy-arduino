@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = vjoyArduino
 TEMPLATE = app
+RC_FILE = ressources.rc
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -28,21 +29,18 @@ SOURCES += \
         main.cpp \
         fenetre.cpp \
         joypad/qjoypad.cpp \
-        moniteurserie.cpp \
-    monitor.cpp
+        moniteurserie.cpp
 
 HEADERS += \
         fenetre.h \
         joypad/qjoypad.h \
         moniteurserie.h \
-    vJoyInclude/public.h \
-    vJoyInclude/vjoyinterface.h \
-    monitor.h
+        vJoyInclude/public.h \
+        vJoyInclude/vjoyinterface.h \
 
 FORMS += \
         fenetre.ui \
         moniteurserie.ui \
-    monitor.ui
 
 RESOURCES += \
     resources.qrc
