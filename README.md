@@ -12,6 +12,7 @@ Application Qt c++ qui transforme une télécommande en joystick virtuel grâce 
 
 2 - Televerser le programme
 
+
 ## compilation depuis les sources
 1 - Telechargez le projet https://github.com/Robotechnic/VJoy-arduino.git
 
@@ -20,6 +21,15 @@ Application Qt c++ qui transforme une télécommande en joystick virtuel grâce 
 3 - avant d'executer le programme ne pas oubliet de rajouter le fichier [vJoyInterface.dll](https://github.com/Robotechnic/VJoy-arduino/tree/master/vJoyLib) dans le dossier de l'executable
 
 ## instalation
-Lancez simplement le logiciel d'instalation arduinoVjoy.exe
+Lancez l'instalateur présent dans le dossier instalateur
+puis:
+1 - Choisisez la langue
+![choix de langue](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/langue.png)
+
+2 - Aprés l'instalation vous pouvez lire les instruction pour configurer l'arduino
+![instructions](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/step4.png)
+
+3 - Atention ici vous pouvez choisir si vous instalez vjoy ou pas si vous ne l'avez pas instalé précédament instalez le c'est important pour le bon fonctionnement du logiciel.
+
 
 Les joypads viennent de (ce projet)[https://github.com/officinerobotiche/simple_unav_console/tree/develop/qt_simple_unav_console/joypad]
