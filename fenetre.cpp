@@ -217,10 +217,10 @@ void fenetre::setVjoy(float xs, float ys)
 {
     SetAxis(map(x,-100,100,min,max),VJoyInterface,HID_USAGE_X);
     SetAxis(map(y,-100,100,min,max),VJoyInterface,HID_USAGE_Y);
-    SetAxis(map(Rx,-100,100,min,max),VJoyInterface,HID_USAGE_RX);
-    SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
-    SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_SL0);
-    SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_SL1);
+    SetAxis(map(Rx,-100,100,min,max),VJoyInterface,HID_USAGE_Z);
+    SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RX);
+    SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
+    SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_RZ);
 }
 void fenetre::setMode(){
     QAction* envoyeur = qobject_cast<QAction*>(sender());

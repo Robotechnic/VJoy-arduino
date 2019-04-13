@@ -24,6 +24,7 @@ Application Qt c++ qui transforme une télécommande en joystick virtuel grâce 
 Lancez l'instalateur présent dans le dossier instalateur
 puis:
 1 - Choisisez la langue
+
 ![choix de langue](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/langue.png)
 
 2 - Aprés l'instalation vous pouvez lire les instruction pour configurer l'arduino
