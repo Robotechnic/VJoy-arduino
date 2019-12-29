@@ -3,8 +3,6 @@
 
 
 #include <Windows.h>
-#include "vJoyInclude/public.h"
-#include "vJoyInclude/vjoyinterface.h"
 
 const qint32 min = 0x1;
 const qint32 max = 0x8000;
@@ -28,8 +26,7 @@ fenetre::fenetre(QWidget *parent) :
 
     mode = '1'; // le mode de vol
 
-    VJoyInterface = quint32(QInputDialog::getInt(this,"Choix du périférique VJoy","Périférique:",1,1,10));
-    initVjoy(); // initialisation du périférique VJoy
+
 
     //initialisation des QAction
     connect(ui->actionMode_1,SIGNAL(triggered()),this,SLOT(setMode()));
@@ -163,42 +160,7 @@ void fenetre::connectGui(bool connect) // actualiser le gui
 }
 void fenetre::initVjoy() // initialisation de VJoy
 {
-    if (!vJoyEnabled()) // si VJoy est activé
-    {
-        QMessageBox::critical(this,"Vjoy Erreur","Vjoy n'est pas activé !");
-        this->close();
-    }
 
-    VjdStat stat = GetVJDStatus(VJoyInterface);
-
-    switch (stat) { // vérifications
-        case VJD_STAT_BUSY: // si déja utilisé
-            QMessageBox::critical(this,"VJoy Erreur","Le periférique VJoy est actuelement utilisé par un autre logiciel.\n Nous ne pouvons donc pas l'utiliser");
-            close();
-        break;
-        case VJD_STAT_MISS: // si inexistant
-            QMessageBox::critical(this,"VJoy Erreur","VJoy est désactivé ou n'est pas instalé sur cet ordinateur,\nveuillez le réinstaller");
-            close();
-        break;
-        case VJD_STAT_OWN:
-            QMessageBox::critical(this,"VJoy Erreur","Le periférique est déja utilisé par le logiciel");
-            close();
-        break;
-        case VJD_STAT_UNKN:
-            QMessageBox::critical(this,"VJoy Erreur","Le periférique vJoy n'existe pas !");
-            close();
-        break;
-        default:
-            qDebug()<<"périférique vJoy ok";
-        break;
-    }
-    if (!AcquireVJD(VJoyInterface)){
-        QMessageBox::critical(this,"Erreur d'ouverture","L'aplication n'a pas pu ouvrir le prériférique VJoy "+QString::number(VJoyInterface));
-        close();
-    }
-    else {
-        qDebug()<<"priférique ouvert";
-    }
 }
 
 
@@ -215,12 +177,12 @@ void fenetre::on_actionQuiter_triggered()
 
 void fenetre::setVjoy(float xs, float ys)
 {
-    SetAxis(map(x,-100,100,min,max),VJoyInterface,HID_USAGE_X);
-    SetAxis(map(y,-100,100,min,max),VJoyInterface,HID_USAGE_Y);
-    SetAxis(map(Rx,-100,100,min,max),VJoyInterface,HID_USAGE_Z);
-    SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RX);
-    SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
-    SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_RZ);
+//    SetAxis(map(x,-100,100,min,max),VJoyInterface,HID_USAGE_X);
+//    SetAxis(map(y,-100,100,min,max),VJoyInterface,HID_USAGE_Y);
+//    SetAxis(map(Rx,-100,100,min,max),VJoyInterface,HID_USAGE_Z);
+//    SetAxis(map(Ry,-100,100,min,max),VJoyInterface,HID_USAGE_RX);
+//    SetAxis(map(sl01,-100,100,min,max),VJoyInterface,HID_USAGE_RY);
+//    SetAxis(map(sl02,-100,100,min,max),VJoyInterface,HID_USAGE_RZ);
 }
 void fenetre::setMode(){
     QAction* envoyeur = qobject_cast<QAction*>(sender());

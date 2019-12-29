@@ -35,8 +35,6 @@ HEADERS += \
         fenetre.h \
         joypad/qjoypad.h \
         moniteurserie.h \
-        vJoyInclude/public.h \
-        vJoyInclude/vjoyinterface.h \
 
 FORMS += \
         fenetre.ui \
@@ -50,4 +48,3 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-LIBS += -L$$PWD/vjoyLib -lvJoyInterface
