@@ -8,6 +8,16 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QInputDialog>
+//pour uinput
+namespace gamepadUinput{
+    #include <linux/uinput.h>
+    #include <linux/input.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <errno.h>
+}
 #include "moniteurserie.h"
 
 
@@ -31,18 +41,18 @@ private slots:
     void on_actionOuvrir_le_moniteur_s_rie_triggered();
     void textRessus();
     void erreur(QSerialPort::SerialPortError err);
-    void setVjoy(float xs, float ys);
+    void setVjoy();
     void setMode();
-
     void on_actionQuiter_triggered();
-
     void on_actionD_conecter_triggered();
+
 
 private:
     void actualiserSlider();
     void connectGui(bool connect);
     int map(int x, int in_min, int in_max, int out_min, int out_max);
-    void initVjoy();
+    void inituInput();
+    void setAxis(int type, int value, int code);
     Ui::fenetre *ui;
     QJoypad *pad1;
     QJoypad *pad2;
@@ -50,8 +60,9 @@ private:
     MoniteurSerie *moniteur;
     int x,y,Rx,Ry,sl01,sl02;
     char mode;
-    quint32 VJoyInterface;
     QString txt, txtTotal;
+    int fd;
+    unsigned char toggle;
 };
 
 #endif // FENETRE_H
