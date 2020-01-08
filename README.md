@@ -1,7 +1,8 @@
 # VJoy-arduino
 Application Qt c++ qui transforme une télécommande en joystick virtuel grâce à [VJoy](http://vjoystick.sourceforge.net/site/index.php) et une arduino connecté à une radiocommande spektrum (il est cependant possible d'adapter pour d'autres radiocommandes en changeant la connectique dans le montage).
 
-🚩 cette application n'est encore disponible que pour Windows
+🚩 cette application est disponible pour linux et pour windows mais pas pour mac (et elle ne le seras jamais)
+Pour linux allez sur la branche linux
 
 ## Chema
 ![chema de montage](https://github.com/Robotechnic/VJoy-arduino/blob/master/images/arduinoShema.png)
